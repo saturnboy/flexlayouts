@@ -1,0 +1,13 @@
+h1. FlexLayouts
+
+FlexLayouts is an open source libary of custom Flex 4 layouts.  All code is MIT.
+
+h3. Download & Install
+
+# Download the latest SWC from the "downloads page":http://github.com/saturnboy/flexlayouts/downloads
+# Drop it into your project's @libs@ folder
+# Set the @layout@ property of any container to one of the custom layouts in the FlexLayouts library
+
+h3. Links
+
+* "FlexLayouts website":http://flexlayouts.org/

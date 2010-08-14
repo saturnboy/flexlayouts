@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin
+		xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		width="32" height="12">
+
+	<fx:Metadata>
+		[HostComponent("spark.components.Button")]
+	</fx:Metadata>
+
+	<s:states>
+		<s:State name="up" />
+		<s:State name="over" />
+		<s:State name="down" />
+		<s:State name="disabled" />
+	</s:states>
+
+	<!-- bg -->
+	<s:Path>
+		<s:data>M 0,12 L 0,7 C 0,3 3,0 7,0 L 25,0 C 29,0 32,3 32,7 L 32,12 Z</s:data>
+		<s:fill>
+			<s:SolidColor color="#dddddd" />
+		</s:fill>
+	</s:Path>
+
+	<!-- button -->
+	<s:Path x="3" y="2">
+		<s:data>M 0,10 L 0,6 C 0,2 2,0 6,0 L 20,0 C 24,0 26,2 26,6 L 26,10 Z</s:data>
+		<s:fill>
+			<s:SolidColor color="#444444" color.over="#555555" color.down="#555555" color.disabled="#999999" />
+		</s:fill>
+	</s:Path>
+
+	<!-- grip lines -->
+	<s:Path x="10" y="5" alpha.disabled="0.4">
+		<s:data>M 0,0 L 12,0 12,1 0,1 Z
+				M 0,2 L 12,2 12,3 0,3 Z
+				M 0,4 L 12,4 12,5 0,5 Z</s:data>
+		<s:fill>
+			<s:SolidColor color="#eeeeee" color.over="#ff2299" color.down="#111100" color.disabled="#aaaaaa" />
+		</s:fill>
+	</s:Path>
+</s:Skin>

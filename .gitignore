@@ -1,0 +1,5 @@
+.DS_Store
+.settings/
+bin/
+bin-debug/
+bin-release/

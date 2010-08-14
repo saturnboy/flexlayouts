@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:HGroup
+		xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		gap="0">
+
+	<fx:Script>
+		<![CDATA[
+			[Bindable] public var label:String = 'X';
+			[Bindable] public var minimum:Number = 0.0;
+			[Bindable] public var maximum:Number = 1.0;
+			[Bindable] public var step:Number = 0.01;
+			[Bindable] public var value:Number = 0;
+			[Bindable] public var color:uint = 0x333333;
+			[Bindable] public var fontSize:int = 11;
+			[Bindable] public var liveDragging:Boolean = true;
+			
+			private var _sliderWidth:int = -1;
+			public function set sliderWidth(val:int):void {
+				if (_sliderWidth != val) {
+					_sliderWidth = val;
+					if (val == -1) {
+						slider.percentWidth = 100;
+					} else {
+						slider.width = val;
+					}
+				}
+			}
+		]]>
+	</fx:Script>
+
+	<s:Label text="{label}" paddingRight="6"
+			color="{color}" fontWeight="bold" fontSize="{fontSize}" />
+
+	<s:HSlider id="slider" width="100%"
+			minimum="{minimum}" maximum="{maximum}" snapInterval="{step}" value="@{value}"
+			liveDragging="{liveDragging}" showDataTip="false" />
+
+	<s:Label text="{slider.value}" minWidth="17" paddingLeft="2"
+			textAlign="right"
+			color="{color}" fontWeight="normal" fontSize="{fontSize}" />
+</s:HGroup>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin
+		xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		alpha.disabled="0.5"
+		minWidth="100" minHeight="15">
+
+	<fx:Metadata>
+		[HostComponent("org.flexlayouts.containers.Drawer")]
+	</fx:Metadata>
+
+
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="opened" />
+		<s:State name="disabled" />
+	</s:states>
+
+
+	<s:transitions>
+		<s:Transition fromState="normal" toState="opened">
+			<s:Resize target="{this}" duration="600" />
+		</s:Transition>
+		<s:Transition fromState="opened" toState="normal">
+			<s:Sequence>
+				<s:Resize target="{this}" duration="600" />
+				<s:RemoveAction target="{contentGroup}" />
+			</s:Sequence>
+		</s:Transition>
+	</s:transitions>
+
+	<!-- bg -->
+	<s:Rect left="0" right="0" top="12" bottom="-6" radiusX="6">
+		<s:fill>
+			<s:SolidColor color="#dddddd" />
+		</s:fill>
+	</s:Rect>
+
+	<s:Button id="openButton" width="32" height="12"
+			label=""
+			horizontalCenter="0"
+			skinClass="org.flexlayouts.skins.DrawerButtonSkin" />
+
+	<s:Group id="contentGroup" left="0" right="0" top="12" bottom="0" includeIn="opened"
+			minWidth="0" minHeight="0">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+	</s:Group>
+</s:Skin>
