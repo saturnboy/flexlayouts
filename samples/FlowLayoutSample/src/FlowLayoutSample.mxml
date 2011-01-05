@@ -27,11 +27,17 @@
 	<s:Group left="10" top="10" width="{widthSlider.value}" height="{heightSlider.value}" clipAndEnableScrolling="true">
 		<s:Rect left="0" right="0" top="0" bottom="0">
 			<s:fill>
-				<s:SolidColor color="#ffffff" />
+				<s:SolidColor color="#dddddd" />
 			</s:fill>
 			<s:stroke>
 				<s:SolidColorStroke color="#666655" weight="1" />
 			</s:stroke>
+		</s:Rect>
+		
+		<s:Rect left="{padSlider.value + 1}" right="{padSlider.value + 1}" top="{padSlider.value + 1}" bottom="{padSlider.value + 1}">
+			<s:fill>
+				<s:SolidColor color="#ffffff" />
+			</s:fill>
 		</s:Rect>
 		
 		<s:DataGroup left="1" right="1" top="1" bottom="1"

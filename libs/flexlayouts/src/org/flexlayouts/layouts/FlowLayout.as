@@ -42,15 +42,14 @@ package org.flexlayouts.layouts {
 			var y:Number = _padding;
 			var maxWidth:Number = 0;
 			var maxHeight:Number = 0;
+			var rowMaxHeight:Number = 0;
 
 			//loop through all the elements
 			var layoutTarget:GroupBase = target;
 			var count:int = layoutTarget.numElements;
 
 			for (var i:int = 0; i < count; i++) {
-				var element:ILayoutElement = useVirtualLayout ?
-					layoutTarget.getVirtualElementAt(i) :
-					layoutTarget.getElementAt(i);
+				var element:ILayoutElement = ( useVirtualLayout ? layoutTarget.getVirtualElementAt(i) : layoutTarget.getElementAt(i) );
 
 				//resize the element to its preferred size by passing in NaN
 				element.setLayoutBoundsSize(NaN, NaN);
@@ -59,14 +58,17 @@ package org.flexlayouts.layouts {
 				var elementWidth:Number = element.getLayoutBoundsWidth();
 				var elementHeight:Number = element.getLayoutBoundsHeight();
 
-				//does the element fit on this line, or should we move to the next line?
-				if (x + elementWidth > containerWidth) {
+				//does the element fit on this line (including padding), or should we move to the next line?
+				if (x + elementWidth + _padding > containerWidth) {
 					//start from the left side
 					x = _padding;
 
-					//move to the next line, and add the gap, bot not if it's the first element
+					//move to the next line, and add the gap, but not if it's the first element
 					if (i > 0) {
-						y += elementHeight + _verticalGap;
+						y += rowMaxHeight + _verticalGap;
+
+						//new row, so reset max height of this row
+						rowMaxHeight = 0;
 					}
 				}
 				//position the element
@@ -78,6 +80,11 @@ package org.flexlayouts.layouts {
 
 				//update the current pos, and add the gap
 				x += elementWidth + _horizontalGap;
+
+				//update the max height of current row as necessary
+				if (elementHeight > rowMaxHeight) {
+					rowMaxHeight = elementHeight;
+				}
 			}
 
 			//set final content size (needed for scrolling)

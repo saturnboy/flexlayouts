@@ -35,11 +35,13 @@ package org.flexlayouts.layouts {
 			var y:Number = 0;
 			var maxWidth:Number = 0;
 			var maxHeight:Number = 0;
+			var row:int = 0;
+			var newRow:Boolean = false;
+			var rowMaxHeight:Number = 0;
 
 			//loop through all the elements
 			var layoutTarget:GroupBase = target;
 			var count:int = layoutTarget.numElements;
-			var row:int = 0;
 
 			for (var i:int = 0; i < count; i++) {
 				var element:ILayoutElement = ( useVirtualLayout ? layoutTarget.getVirtualElementAt(i) : layoutTarget.getElementAt(i) );
@@ -55,23 +57,29 @@ package org.flexlayouts.layouts {
 				if (row % 2 == 0 && x + elementWidth > containerWidth) {
 					//going from odd row to even row, so start from the right side
 					x = containerWidth;
-
-					//move to the next line, and add the gap, but not if it's the first element
-					if (i > 0) {
-						y += elementHeight + _verticalGap;
-						row++;
+					
+					//handle special case of first row
+					if (i == 0) {
+						x = 0;
+					} else {
+						newRow = true;
 					}
 				} else if (row % 2 != 0 && x - elementWidth < 0) {
 					//going from even row to odd row, so start from the left side
 					x = 0;
-
-					//move to the next line, and add the gap, but not if it's the first element
-					if (i > 0) {
-						y += elementHeight + _verticalGap;
-						row++;
-					}
+					newRow = true;
 				}
-				
+
+				//move to the next row, and add the gap
+				if (newRow) {
+					newRow = false;
+					y += rowMaxHeight + _verticalGap;
+					row++;
+					
+					//new row, so reset max height of this row
+					rowMaxHeight = 0;
+				}
+
 				//position the element
 				if (row % 2 == 0) {
 					//update max dimensions (needed for scrolling)
@@ -83,12 +91,16 @@ package org.flexlayouts.layouts {
 
 				element.setLayoutBoundsPosition(x, y);
 
-
 				//update the current pos, and add the gap
 				if (row % 2 == 0) {
 					x += elementWidth + _horizontalGap;
 				} else {
 					x -= _horizontalGap;
+				}
+
+				//update the max height of current row as necessary
+				if (elementHeight > rowMaxHeight) {
+					rowMaxHeight = elementHeight;
 				}
 			}
 
