@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application
+		xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:layouts="org.flexlayouts.layouts.*"
+		xmlns:containers="org.flexlayouts.containers.*"
+		xmlns:components="org.flexlayouts.components.*"
+		xmlns:utils="org.flexlayouts.utils.*"
+		backgroundColor="#eeeeee"
+		width="620" height="420"
+		viewSourceURL="srcview/index.html">
+
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		
+		s|Label { color:#333333; fontSize:11; }
+		s|Button { color:#333333; fontSize:11; fontWeight:bold; }
+		s|CheckBox { color:#ff3333; fontSize:11; fontWeight:bold; }
+	</fx:Style>
+
+
+	<fx:Declarations>
+		<utils:Randomizer id="randomizer" min="0" max="{deltaSlider.value}" />
+	</fx:Declarations>
+
+
+	<s:Group left="10" top="10" width="{widthSlider.value + 2}" height="{heightSlider.value + 2}" clipAndEnableScrolling="true">
+		<s:Rect left="0" right="0" top="0" bottom="0">
+			<s:fill>
+				<s:SolidColor color="#ffffff" />
+			</s:fill>
+			<s:stroke>
+				<s:SolidColorStroke color="#666655" weight="1" />
+			</s:stroke>
+		</s:Rect>
+		
+		<s:DataGroup left="1" right="1" top="1" bottom="1"
+					dataProvider="{randomizer.getList(int(numSlider.value))}">
+			<s:itemRenderer>
+				<fx:Component>
+					<s:ItemRenderer>
+						<components:LabeledBox label="{itemIndex + 1}"
+								width="{outerDocument.sizeSlider.value + (outerDocument.randomWidth.selected ? data : 0)}"
+								height="{outerDocument.sizeSlider.value  + (outerDocument.randomHeight.selected ? data : 0)}" />
+					</s:ItemRenderer>
+				</fx:Component>
+			</s:itemRenderer>
+			<s:layout>
+				<layouts:CircleLayout rotation="{rotSlider.value}" />
+			</s:layout>
+		</s:DataGroup>
+	</s:Group>
+	
+	<containers:Drawer left="8" right="8" bottom="0" opened="true" skinClass="org.flexlayouts.skins.DrawerSkin">
+		
+		<s:VGroup gap="10" left="8" right="8" top="8" bottom="8">
+			<s:HGroup gap="16" width="100%" verticalAlign="middle">
+				<components:LabeledSlider id="widthSlider" label="width" width="100%"
+						minimum="10" maximum="600" step="5" value="400" />
+				<components:LabeledSlider id="heightSlider" label="height" width="100%"
+						 minimum="10" maximum="400" step="5" value="280" />
+			</s:HGroup>
+			
+			<s:HGroup gap="16" width="100%" verticalAlign="middle">
+				<components:LabeledSlider id="numSlider" label="num boxes" width="100%"
+						minimum="1" maximum="32" step="1" value="12" />
+				<components:LabeledSlider id="sizeSlider" label="box size" width="100%"
+						minimum="22" maximum="60" step="2" value="24" />
+			</s:HGroup>
+			
+			<!-- random -->
+			<s:HGroup gap="16" width="100%" verticalAlign="middle">
+				<s:Label text="Random:" fontWeight="bold" fontSize="13" />
+				
+				<s:HGroup gap="8" verticalAlign="middle">
+					<s:CheckBox id="randomWidth" label="width" selected="true" />
+					<s:CheckBox id="randomHeight" label="height" selected="true" />
+				</s:HGroup>
+				
+				<components:LabeledSlider id="deltaSlider" label="delta" width="150"
+						minimum="0" maximum="60" step="2" value="30"
+						liveDragging="false" enabled="{randomWidth.selected || randomHeight.selected}" />
+				
+				<s:Button label="randomize"
+						click="randomizer.refresh()"
+						enabled="{randomWidth.selected || randomHeight.selected}" />
+			</s:HGroup>
+			
+			<!-- params -->
+			<s:Group width="100%">
+				<s:Rect left="0" right="0" top="0" bottom="0" radiusX="8">
+					<s:fill>
+						<s:SolidColor color="#ffffff" />
+					</s:fill>
+				</s:Rect>
+				
+				<s:HGroup gap="16" left="6" right="6" top="8" bottom="8">
+					<s:Label text="Params:" fontWeight="bold" fontSize="13" paddingTop="3" />
+					
+					<s:VGroup gap="8" paddingTop="5">
+						<s:HGroup gap="16" width="100%" verticalAlign="middle">
+							<components:LabeledSlider id="rotSlider" label="rotation" sliderWidth="180"
+									minimum="0" maximum="360" step="2" value="0" />
+						</s:HGroup>
+					</s:VGroup>
+				</s:HGroup>
+			</s:Group>
+		</s:VGroup>
+	</containers:Drawer>
+</s:Application>
