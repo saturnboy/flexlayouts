@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${application}</title>
+
+<style type="text/css" media="screen">
+html, body, #flashcontent { height:${height}; }
+body { margin:0; padding:0; overflow:hidden; }
+</style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+<script type="text/javascript">
+swfobject.embedSWF('${swf}.swf', 'flashcontent', '${width}', '${height}', '${version_major}.${version_minor}.${version_revision}', '${expressInstallSwf}', false, { 'bgColor':'${bgcolor}' });
+</script>
+</head>
+
+<body>
+<div id="flashcontent">
+Flash is required.  <a href="http://www.adobe.com/go/getflashplayer">Get it here!</a>
+</div>
+</body>
+</html>
