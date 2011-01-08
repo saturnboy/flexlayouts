@@ -1,5 +1,6 @@
 package org.flexlayouts.layouts {
 	import mx.core.ILayoutElement;
+	import mx.core.IVisualElement;
 	
 	import spark.components.supportClasses.GroupBase;
 	import spark.layouts.supportClasses.LayoutBase;
@@ -101,8 +102,9 @@ package org.flexlayouts.layouts {
 					maxWidth = Math.max(maxWidth, x + elementWidth);
 					maxHeight = Math.max(maxHeight, y + elementHeight);
 				} else {
-					//center all overflow
-					element.setLayoutBoundsPosition(containerWidth * 0.5 - elementWidth * 0.5, containerHeight * 0.5 - elementHeight * 0.5);
+					//hide all overflow
+					element.includeInLayout = false;
+					(element as IVisualElement).visible = false;
 				}
 
 				//update the current pos, and add the gap
