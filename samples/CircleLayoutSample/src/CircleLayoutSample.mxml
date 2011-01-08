@@ -58,7 +58,7 @@
 				<components:LabeledSlider id="widthSlider" label="width" width="100%"
 						minimum="10" maximum="600" step="5" value="400" />
 				<components:LabeledSlider id="heightSlider" label="height" width="100%"
-						 minimum="10" maximum="400" step="5" value="280" />
+						 minimum="10" maximum="400" step="5" value="270" />
 			</s:HGroup>
 			
 			<s:HGroup gap="16" width="100%" verticalAlign="middle">
@@ -99,8 +99,8 @@
 					
 					<s:VGroup gap="8" paddingTop="5">
 						<s:HGroup gap="16" width="100%" verticalAlign="middle">
-							<components:LabeledSlider id="rotSlider" label="rotation" sliderWidth="180"
-									minimum="0" maximum="360" step="2" value="0" />
+							<components:LabeledSlider id="rotSlider" label="rotation" sliderWidth="145"
+									minimum="-360" maximum="360" step="5" value="-60" />
 						</s:HGroup>
 					</s:VGroup>
 				</s:HGroup>
