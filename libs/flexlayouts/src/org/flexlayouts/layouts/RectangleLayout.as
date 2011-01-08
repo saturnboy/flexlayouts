@@ -101,9 +101,11 @@ package org.flexlayouts.layouts {
 					//update max dimensions (needed for scrolling)
 					maxWidth = Math.max(maxWidth, x + elementWidth);
 					maxHeight = Math.max(maxHeight, y + elementHeight);
+
+					//make sure element is visible
+					(element as IVisualElement).visible = true;
 				} else {
 					//hide all overflow
-					element.includeInLayout = false;
 					(element as IVisualElement).visible = false;
 				}
 
