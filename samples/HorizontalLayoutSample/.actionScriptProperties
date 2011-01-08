@@ -21,7 +21,6 @@
     <sourcePathIncludes/>
     <sourceExcludes>
       <exclude path="html-template"/>
-      <exclude path="libs"/>
     </sourceExcludes>
   </publishSource>
 </actionScriptProperties>
