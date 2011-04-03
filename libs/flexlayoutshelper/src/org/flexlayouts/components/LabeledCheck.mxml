@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:HGroup
+		xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		verticalAlign="middle"
+		gap="0">
+
+	<fx:Script>
+		<![CDATA[
+			[Bindable] public var label:String = 'X';
+			[Bindable] public var selected:Boolean = true;
+			[Bindable] public var color:uint = 0x333333;
+			[Bindable] public var fontSize:int = 11;
+		]]>
+	</fx:Script>
+
+	<s:Label text="{label}" paddingRight="6"
+			color="{color}" fontWeight="bold" fontSize="{fontSize}" />
+
+	<s:CheckBox selected="@{selected}" label="" />
+</s:HGroup>
